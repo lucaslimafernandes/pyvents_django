@@ -10,6 +10,8 @@ class Event(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     event_date = models.DateTimeField(blank=True, null=True)
+    place = models.CharField(max_length=250)
+    url = models.CharField(max_length=250)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     nr_tickets = models.IntegerField()
 
