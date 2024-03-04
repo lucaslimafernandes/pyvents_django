@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import SelectDateWidget
 
 from .models import Event
 
@@ -10,6 +11,7 @@ class EventForm(forms.ModelForm):
 
         widgets = {
             "text": forms.Textarea(attrs={"class": "form-control", "rows": 3}),
+            "event_date": SelectDateWidget(),
         }
 
         labels = {
@@ -20,4 +22,8 @@ class EventForm(forms.ModelForm):
             "url": "Link",
             "price": "Valor (R$)",
             "nr_tickets": "Número de ingressos disponíveis",
+        }
+
+        initial = {
+            "price": 0,
         }

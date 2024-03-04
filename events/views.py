@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
 from django.urls import reverse
@@ -22,9 +22,15 @@ def vw_new_event(request):
             event = form.save(commit=False)
             event.author = request.user
             event.save()
-            return redirect(reverse('Events:vw_events_list'))
+            return redirect(reverse('Events:vw_detail_event', args=[event.pk]))
 
     else:
         form = EventForm()
         content = {"form": form}
         return render(request, "events/create_event.html", content)
+
+def vw_detail_event(request, pk):
+    item = get_object_or_404(Event, pk=pk)
+    content = {"event": item}
+
+    return render(request, 'events/detail_event.html', content)
