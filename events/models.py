@@ -4,6 +4,7 @@ from django.utils import timezone
 
 # Create your models here.
 
+
 class Event(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
@@ -14,5 +15,3 @@ class Event(models.Model):
     url = models.CharField(max_length=250)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     nr_tickets = models.IntegerField()
-
-
