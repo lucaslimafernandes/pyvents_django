@@ -3,7 +3,7 @@ from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
 from django.urls import reverse
 
-from .models import Event
+from .models import Event, Ticket, Coupon
 
 from .forms import EventForm
 
@@ -34,3 +34,19 @@ def vw_detail_event(request, pk):
     content = {"event": item}
 
     return render(request, 'events/detail_event.html', content)
+
+def vw_buy_ticket(request, pk):
+
+    event = get_object_or_404(Event, pk=pk)
+    tickets = Ticket.objects.filter(event=event)
+
+    _available = event.nr_tickets - tickets.count()
+    _ok_to_buy = True if _available > 0 else False
+    content = {
+        'event': event.title,
+        'tickets_sold': tickets.count(),
+        'available': _available,
+        'ok_to_buy': _ok_to_buy
+    }
+
+    return JsonResponse(content)

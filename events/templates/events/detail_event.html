@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} PyVents - Exibir evento {% endblock %}
+{% block title %} {{ event.title }} {% endblock %}
 
 {% block content %}
 
@@ -9,7 +9,12 @@
     <div class="card">
       <div class="card-body">
         
-        <p>Evento: {{ event.title }}</p>
+        <p>Evento: <a href="{{ event.url }}">{{ event.title }}</a> </p>
+        <p>Texto: {{ event.text }} </p>
+        <p>Quando: {{ event.event_date }} </p>
+        <p>Onde: {{ event.place }} </p>
+        <p>Preço (R$): {{ event.price }} </p>
+        <a href="buy/"><button>Comprar ingresso</button></a>
 
     </div>
     </div>
