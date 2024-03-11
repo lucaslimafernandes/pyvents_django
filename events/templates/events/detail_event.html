@@ -14,8 +14,11 @@
         <p>Quando: {{ event.event_date }} </p>
         <p>Onde: {{ event.place }} </p>
         <p>Preço (R$): {{ event.price }} </p>
+        {% if available %}
         <a href="buy/"><button>Comprar ingresso</button></a>
-
+        {% else %}
+        <a href=""><button disabled>Comprar ingresso</button></a>
+        {% endif %}
     </div>
     </div>
   </div>

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} {{ event.title }} {% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h3 class="display-4">Checkout</h3>
+
+    {% if ok_to_buy %}
+    <form method="post" class="form">
+      {% csrf_token %}
+      <input type="hidden" name="buy" value="true">
+      <button type="submit">Comprar</button>
+    </form>
+     <a href="../"><button>Deixar</button></a>
+    {% else %}
+      Sorry, doesn't have any tickets available!
+    {% endif %}
+
+
+  </div>
+{% endblock %}
